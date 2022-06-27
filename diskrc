@@ -11,7 +11,7 @@ conky.config = {
     draw_shades = true,
     font = 'Ubuntu Mono:normal:size=9',
     gap_x = 1310,
-    gap_y = 200,
+    gap_y = 130,
     maximum_width  = 580,
     minimum_width  = 580,
     no_buffers = true,
