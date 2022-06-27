@@ -11,7 +11,7 @@ conky.config = {
     draw_shades = true,
     font = 'Ubuntu Mono:normal:size=9',
     gap_x = 10,
-    gap_y = 230,
+    gap_y = 180,
     maximum_width  = 580,
     minimum_width  = 580,
     no_buffers = true,
@@ -33,14 +33,12 @@ conky.config = {
 }
 conky.text = [[
 ${voffset 2}${color1}${font :size=8:bold}GPU INFO ${hr 1}${font}
-${color1}Graphics cards:
-${execi 6000 hwinfo --gfxcard | grep "Model"}
-${voffset 2}${color1}MORE INFO ON Intel® GPU ${stippled_hr 1 1}
-${voffset 2}${color1}MORE INFO ON NVIDIA GPU ${stippled_hr 1 1}
-${color1}Driver:${execi 6000 nvidia-smi --query-gpu=driver_version --format=csv,noheader,nounits}${goto 140}${color1}Utilization: ${execi 2 nvidia-smi -i 0 | grep % | awk '{print $13}'}${goto 290}${color1}Frequency: ${nvidia gpufreq}
-${color1}Temp: ${nvidia temp}°C
-${color1}VRAM Usage:$alignr${execi 2 nvidia-smi -i 0 | grep % | awk '{print $9$10$11}'}]];
+${execi 6000 hwinfo --gfxcard | grep "Model"} ${goto 350} ${color1}Driver:  ${execi 6000 nvidia-smi --query-gpu=driver_version --format=csv,noheader,nounits}
+${color1}Utilization: ${execi 2 nvidia-smi -i 0 | grep % | awk '{print $13}'}${goto 140}${color1}Frequency: ${nvidia gpufreq} ${goto 290} ${color1}Temp: ${nvidia temp}°C ${goto 440} ${color1}VRAM:$alignr${execi 2 nvidia-smi -i 0 | grep % | awk '{print $9$10$11}'}]];
 
+-- ${voffset 2}${color1}MORE INFO ON NVIDIA GPU ${stippled_hr 1 1}
+-- ${color1}Graphics cards:
+-- ${voffset 2}${color1}MORE INFO ON Intel® GPU ${stippled_hr 1 1}
 -- Driver: ${execi 6000 glxinfo | grep "OpenGL version" |cut -c52-70}
 -- ${voffset 2}${color1}PROCESSES USING NVIDIA GPU ${stippled_hr 1 1}
 -- ${color1}Name - VRAM Usage
